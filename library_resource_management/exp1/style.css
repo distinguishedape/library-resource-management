@@ -1,0 +1,112 @@
+/* Basic College Practical Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #222222;
+  margin: 0;
+  padding: 30px 16px;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 24px;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #555555;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #bbbbbb;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  padding-top: 4px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: normal;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 16px;
+  background-color: #1a73e8;
+  color: #ffffff;
+  border: none;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1558b0;
+}
+
+.success-box {
+  display: none;
+  margin-top: 18px;
+  padding: 12px 14px;
+  background-color: #e8f5e9;
+  border: 1px solid #c3e6cb;
+  color: #1b5e20;
+  font-size: 14px;
+}
+
+.success-box:target {
+  display: block;
+}
+
+.success-box p {
+  margin: 6px 0 8px 0;
+}
+
+.reset-link {
+  color: #1a73e8;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.reset-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,128 @@
+/* Basic College Practical Styling for Experiment 4 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #222222;
+  margin: 0;
+  padding: 30px 16px;
+}
+
+.lrm-container {
+  max-width: 780px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  color: #222222;
+}
+
+.lrm-title {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.lrm-subtitle {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #555555;
+  text-align: center;
+}
+
+.lrm-banner {
+  background-color: #e8f5e9;
+  border: 1px solid #c3e6cb;
+  color: #1b5e20;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+.lrm-banner p {
+  margin: 4px 0;
+}
+
+.lrm-error {
+  background-color: #fdecea;
+  border: 1px solid #f5c6cb;
+  color: #b71c1c;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.lrm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.lrm-table th,
+.lrm-table td {
+  border: 1px solid #cccccc;
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.lrm-table th {
+  background-color: #f5f5f5;
+}
+
+.lrm-btn {
+  padding: 7px 12px;
+  background-color: #1a73e8;
+  color: #ffffff;
+  border: none;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.lrm-btn:hover {
+  background-color: #1558b0;
+}
+
+.lrm-btn-secondary {
+  background-color: #666666;
+}
+
+.lrm-btn-secondary:hover {
+  background-color: #444444;
+}
+
+.lrm-edit-box {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #cccccc;
+  background-color: #fafafa;
+}
+
+.lrm-edit-box h2 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.lrm-form-group {
+  margin-bottom: 12px;
+}
+
+.lrm-form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.lrm-form-group input,
+.lrm-form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbbbbb;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}

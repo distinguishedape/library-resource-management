@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Resource Management - Experiment 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #222222;
+      margin: 0;
+      padding: 30px 16px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      padding: 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #555555;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #bbbbbb;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      padding-top: 4px;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: normal;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px 16px;
+      background-color: #1a73e8;
+      color: #ffffff;
+      border: none;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1558b0;
+    }
+
+    .message {
+      margin-top: 14px;
+      padding: 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background-color: #fdecea;
+      color: #b71c1c;
+      border: 1px solid #f5c6cb;
+    }
+
+    .message.success {
+      display: block;
+      background-color: #e8f5e9;
+      color: #1b5e20;
+      border: 1px solid #c3e6cb;
+    }
+
+    h2 {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border: 1px solid #cccccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f7f7f7;
+    }
+
+    .empty-note {
+      font-size: 14px;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Library Resource Management</h1>
+    <p class="subtitle">Experiment 2: JavaScript Validation &amp; JSON Storage</p>
+
+    <form id="libraryForm" novalidate>
+      <div class="form-group">
+        <label for="userName">User Name (max 40 characters):</label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Enter user name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="userEmail">Email Address:</label>
+        <input
+          type="text"
+          id="userEmail"
+          name="userEmail"
+          placeholder="Enter email address"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="resource">Resource Selection:</label>
+        <select id="resource" name="resource">
+          <option value="">-- Select Resource --</option>
+          <option value="Book">Book</option>
+          <option value="Journal">Journal</option>
+          <option value="Magazine">Magazine</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Purpose Selection:</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="purpose" value="Borrow">
+            Borrow
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="purpose" value="Return">
+            Return
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Submit Record</button>
+    </form>
+
+    <div id="messageBox" class="message"></div>
+
+    <h2>Saved Records (user.json)</h2>
+    <div id="recordsContainer"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

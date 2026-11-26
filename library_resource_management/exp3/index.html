@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Resource Management - Experiment 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #222222;
+      margin: 0;
+      padding: 30px 16px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      padding: 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #555555;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 24px;
+      margin-bottom: 10px;
+      font-size: 17px;
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 5px;
+    }
+
+    .section-box {
+      border: 1px solid #dddddd;
+      padding: 16px;
+      margin-bottom: 18px;
+      background-color: #fafafa;
+    }
+
+    .form-row {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #bbbbbb;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      background-color: #1a73e8;
+      color: #ffffff;
+      border: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1558b0;
+    }
+
+    .btn-danger {
+      background-color: #c62828;
+    }
+
+    .btn-danger:hover {
+      background-color: #9e1c1c;
+    }
+
+    .btn-small {
+      padding: 5px 10px;
+      font-size: 12px;
+      margin-right: 4px;
+    }
+
+    .message {
+      margin-bottom: 16px;
+      padding: 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background-color: #fdecea;
+      color: #b71c1c;
+      border: 1px solid #f5c6cb;
+    }
+
+    .message.success {
+      display: block;
+      background-color: #e8f5e9;
+      color: #1b5e20;
+      border: 1px solid #c3e6cb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid #cccccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Library Resource Management</h1>
+    <p class="subtitle">Experiment 3: Express.js JSON Operations (Update, Alter, Delete)</p>
+
+    <div id="statusMessage" class="message"></div>
+
+    <h2>1. Update Record (Saves to user.json)</h2>
+    <div class="section-box">
+      <form id="updateForm">
+        <div class="form-row">
+          <label for="updateId">Select User ID:</label>
+          <select id="updateId" required></select>
+        </div>
+        <div class="form-row">
+          <label for="updateName">New Name (max 40 chars):</label>
+          <input type="text" id="updateName" placeholder="Enter updated name" required>
+        </div>
+        <div class="form-row">
+          <label for="updateEmail">New Email:</label>
+          <input type="text" id="updateEmail" placeholder="Enter updated email" required>
+        </div>
+        <div class="form-row">
+          <label for="updateResource">Resource:</label>
+          <select id="updateResource" required>
+            <option value="Book">Book</option>
+            <option value="Journal">Journal</option>
+            <option value="Magazine">Magazine</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="updatePurpose">Purpose:</label>
+          <select id="updatePurpose" required>
+            <option value="Borrow">Borrow</option>
+            <option value="Return">Return</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Update Record in user.json</button>
+      </form>
+    </div>
+
+    <h2>2. Alter Resource (Saves to alter.json, keeps user.json unchanged)</h2>
+    <div class="section-box">
+      <form id="alterForm">
+        <div class="form-row">
+          <label for="alterId">Select User ID:</label>
+          <select id="alterId" required></select>
+        </div>
+        <div class="form-row">
+          <label for="alterResource">Altered Resource:</label>
+          <select id="alterResource" required>
+            <option value="Book">Book</option>
+            <option value="Journal">Journal</option>
+            <option value="Magazine">Magazine</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Alter Resource in alter.json</button>
+      </form>
+    </div>
+
+    <h2>3. Delete Record (Removes from both user.json and alter.json)</h2>
+    <div class="section-box">
+      <form id="deleteForm">
+        <div class="form-row">
+          <label for="deleteId">Select User ID to Delete:</label>
+          <select id="deleteId" required></select>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete from Both JSON Files</button>
+      </form>
+    </div>
+
+    <h2>Current Records in user.json</h2>
+    <div id="usersTable"></div>
+
+    <h2>Altered Records in alter.json</h2>
+    <div id="alterTable"></div>
+  </div>
+
+  <script>
+    const statusMessage = document.getElementById("statusMessage");
+    const updateId = document.getElementById("updateId");
+    const alterId = document.getElementById("alterId");
+    const deleteId = document.getElementById("deleteId");
+    let usersList = [];
+
+    function showStatus(text, type) {
+      statusMessage.textContent = text;
+      statusMessage.className = "message " + type;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function fillUpdateFields() {
+      const selected = usersList.find(function (u) {
+        return u.id === updateId.value;
+      });
+      if (selected) {
+        document.getElementById("updateName").value = selected.name;
+        document.getElementById("updateEmail").value = selected.email;
+        document.getElementById("updateResource").value = selected.resource;
+        document.getElementById("updatePurpose").value = selected.purpose;
+      }
+    }
+
+    updateId.addEventListener("change", fillUpdateFields);
+
+    async function loadAllData() {
+      const [usersRes, alterRes] = await Promise.all([
+        fetch("/api/users"),
+        fetch("/api/alter")
+      ]);
+      usersList = await usersRes.json();
+      const alterList = await alterRes.json();
+
+      // Populate dropdowns
+      const optionsHtml = usersList.length
+        ? usersList
+            .map(function (u) {
+              return '<option value="' + escapeHtml(u.id) + '">' + escapeHtml(u.id + " - " + u.name) + "</option>";
+            })
+            .join("")
+        : '<option value="">No users available</option>';
+
+      updateId.innerHTML = optionsHtml;
+      alterId.innerHTML = optionsHtml;
+      deleteId.innerHTML = optionsHtml;
+      fillUpdateFields();
+
+      // Render user.json table
+      const usersTable = document.getElementById("usersTable");
+      if (usersList.length === 0) {
+        usersTable.innerHTML = "<p>No records in user.json.</p>";
+      } else {
+        usersTable.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Resource</th>
+                <th>Purpose</th>
+                <th>Quick Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${usersList
+                .map(function (u) {
+                  return `
+                    <tr>
+                      <td>${escapeHtml(u.id)}</td>
+                      <td>${escapeHtml(u.name)}</td>
+                      <td>${escapeHtml(u.email)}</td>
+                      <td>${escapeHtml(u.resource)}</td>
+                      <td>${escapeHtml(u.purpose)}</td>
+                      <td>
+                        <button type="button" class="btn btn-danger btn-small" onclick="deleteUserById('${escapeHtml(u.id)}')">Delete</button>
+                      </td>
+                    </tr>
+                  `;
+                })
+                .join("")}
+            </tbody>
+          </table>
+        `;
+      }
+
+      // Render alter.json table
+      const alterTable = document.getElementById("alterTable");
+      if (alterList.length === 0) {
+        alterTable.innerHTML = "<p>No altered records in alter.json.</p>";
+      } else {
+        alterTable.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Original Resource</th>
+                <th>Altered Resource</th>
+                <th>Altered At</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${alterList
+                .map(function (a) {
+                  return `
+                    <tr>
+                      <td>${escapeHtml(a.id)}</td>
+                      <td>${escapeHtml(a.name)}</td>
+                      <td>${escapeHtml(a.originalResource)}</td>
+                      <td>${escapeHtml(a.alteredResource)}</td>
+                      <td>${escapeHtml(a.alteredAt)}</td>
+                    </tr>
+                  `;
+                })
+                .join("")}
+            </tbody>
+          </table>
+        `;
+      }
+    }
+
+    // Operation 1: Update user record in user.json
+    document.getElementById("updateForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const id = updateId.value;
+      if (!id) {
+        showStatus("Please select a valid user to update.", "error");
+        return;
+      }
+
+      const payload = {
+        name: document.getElementById("updateName").value.trim(),
+        email: document.getElementById("updateEmail").value.trim(),
+        resource: document.getElementById("updateResource").value,
+        purpose: document.getElementById("updatePurpose").value
+      };
+
+      const res = await fetch("/api/users/" + encodeURIComponent(id), {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showStatus(data.error || "Update failed.", "error");
+        return;
+      }
+
+      showStatus("User record updated in user.json.", "success");
+      loadAllData();
+    });
+
+    // Operation 2: Alter resource in alter.json without modifying user.json
+    document.getElementById("alterForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const id = alterId.value;
+      if (!id) {
+        showStatus("Please select a valid user to alter.", "error");
+        return;
+      }
+
+      const payload = {
+        alteredResource: document.getElementById("alterResource").value
+      };
+
+      const res = await fetch("/api/alter/" + encodeURIComponent(id), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showStatus(data.error || "Alter operation failed.", "error");
+        return;
+      }
+
+      showStatus("Resource altered and saved to alter.json. user.json remains unchanged.", "success");
+      loadAllData();
+    });
+
+    // Operation 3: Delete user from both user.json and alter.json
+    async function deleteUserById(id) {
+      if (!id) {
+        showStatus("Please select a valid user to delete.", "error");
+        return;
+      }
+
+      const res = await fetch("/api/users/" + encodeURIComponent(id), {
+        method: "DELETE"
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showStatus(data.error || "Delete failed.", "error");
+        return;
+      }
+
+      showStatus("User deleted from both user.json and alter.json.", "success");
+      loadAllData();
+    }
+
+    document.getElementById("deleteForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      deleteUserById(deleteId.value);
+    });
+
+    loadAllData();
+  </script>
+</body>
+</html>

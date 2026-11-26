@@ -1,0 +1,6 @@
+{
+  "name": "Library Resource Management Desk",
+  "description": "College Web Technology practical application demonstrating HTML/CSS, JavaScript validation, Express.js JSON file operations, and React.js update counters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

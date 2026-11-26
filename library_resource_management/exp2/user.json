@@ -1,0 +1,16 @@
+[
+  {
+    "id": "USR-1001",
+    "name": "Rahul Sharma",
+    "email": "rahul@college.edu",
+    "resource": "Book",
+    "purpose": "Borrow"
+  },
+  {
+    "id": "USR-1002",
+    "name": "Priya Verma",
+    "email": "priya@college.edu",
+    "resource": "Journal",
+    "purpose": "Return"
+  }
+]

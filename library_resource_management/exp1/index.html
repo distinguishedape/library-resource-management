@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Resource Management - Experiment 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Library Resource Management</h1>
+    <p class="subtitle">Experiment 1: Basic HTML and CSS Interface</p>
+
+    <form action="#submitted" method="get">
+      <div class="form-group">
+        <label for="userName">User Name:</label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Enter user name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="resource">Resource Selection:</label>
+        <select id="resource" name="resource" required>
+          <option value="">-- Select Resource --</option>
+          <option value="Book">Book</option>
+          <option value="Journal">Journal</option>
+          <option value="Magazine">Magazine</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Purpose Selection:</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="purpose" value="Borrow" required>
+            Borrow
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="purpose" value="Return">
+            Return
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+
+    <div id="submitted" class="success-box">
+      <strong>Request Submitted!</strong>
+      <p>Your library resource form has been submitted successfully.</p>
+      <a href="index.html" class="reset-link">Submit Another Request</a>
+    </div>
+  </div>
+</body>
+</html>

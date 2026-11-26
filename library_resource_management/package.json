@@ -1,0 +1,21 @@
+{
+  "name": "library-resource-management",
+  "version": "1.0.0",
+  "description": "College Web Technology Practical - Library Resource Management Desk Application",
+  "type": "module",
+  "scripts": {
+    "start": "node exp3/server.js",
+    "exp3": "node exp3/server.js",
+    "exp4": "vite exp4 --port 5173",
+    "build:exp4": "vite build exp4"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.0"
+  }
+}
